@@ -1,7 +1,11 @@
 import Layout from "../components/home/layout";
 import "./signin.css";
+import { useEffect } from "react";
 
 function Signin() {
+  useEffect(() => {
+    document.title = "Argent Bank - Home Page";
+  }, []);
   return (
     <Layout>
       <div className="main bg-dark">
