@@ -1,19 +1,5 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { Navigate } from "react-router-dom";
-
-export const loginUser = createAsyncThunk(
-  "user/loginUser",
-  async (userCredentials) => {
-    const request = await axios.post(
-      "http://localhost:3001/api/v1/user/login",
-      userCredentials
-    );
-    const response = await request.data.data;
-    localStorage.setItem("user", JSON.stringify(response));
-    return response;
-  }
-);
+import { createSlice } from "@reduxjs/toolkit";
+import { loginUser } from "../api/signInApi";
 
 const userSlice = createSlice({
   name: "user",

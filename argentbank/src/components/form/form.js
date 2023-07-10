@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "../layout/button.js";
 import "./form.css";
 import { useState } from "react";
-import { loginUser } from "../../store/userSlice.js";
+import { loginUser } from "../../api/signInApi.js";
 import { useNavigate } from "react-router-dom";
 
 function Form() {
@@ -20,7 +20,6 @@ function Form() {
       password,
     };
     dispatch(loginUser(userCredentials)).then((result) => {
-      // ERROR WHILE REDIRECTING IS PROBABLY HERE
       if (result.meta.requestStatus === "fulfilled") {
         setEmail("");
         setPassword("");
