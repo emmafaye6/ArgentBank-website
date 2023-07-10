@@ -2,18 +2,38 @@ import { useEffect } from "react";
 import Layout from "../components/layout/layout";
 import Accounts from "../components/user/accounts";
 import UserHeader from "../components/user/header";
+import { useSelector } from "react-redux";
+import { selectLogIn } from "../store/selectors";
+import { Navigate } from "react-router-dom";
 
 function User() {
+  const user = useSelector(selectLogIn);
+
+  const ifConnected = () => {
+    if (user.isLoggedIn === true) {
+      console.log("this works");
+      return true;
+    } else {
+      console.log("not connected");
+      return false;
+    }
+  };
+  ifConnected();
   useEffect(() => {
     document.title = "Argent Bank - User Page";
   }, []);
-  return (
-    <Layout>
-      <div className="main bg-dark">
-        <UserHeader />
-        <Accounts />
-      </div>
-    </Layout>
-  );
+
+  if (!ifConnected()) {
+    return <Navigate to="/signin" />;
+  } else {
+    return (
+      <Layout>
+        <div className="main bg-dark">
+          <UserHeader />
+          <Accounts />
+        </div>
+      </Layout>
+    );
+  }
 }
 export default User;

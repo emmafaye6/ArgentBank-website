@@ -6,7 +6,6 @@ import { selectLogIn } from "../../store/selectors";
 
 function Nav() {
   const user = useSelector(selectLogIn);
-  console.log(user.isLoggedIn);
 
   const isConnected = () => {
     if (user.isLoggedIn === true) {

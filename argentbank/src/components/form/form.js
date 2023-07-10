@@ -11,7 +11,7 @@ function Form() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { loading, error } = useSelector((state) => state.user);
+  const { loading } = useSelector((state) => state.user);
 
   const handleLoginEvent = (e) => {
     e.preventDefault();
