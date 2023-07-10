@@ -57,11 +57,6 @@ function Form() {
       <Button className="sign-in-button" type="submit">
         {loading ? "Loading..." : "Login"}
       </Button>
-      {error && (
-        <div className="alert alert-danger" role="alert">
-          {error}
-        </div>
-      )}
     </form>
   );
 }

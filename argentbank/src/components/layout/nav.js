@@ -1,8 +1,21 @@
 import "./nav.css";
 import Logo from "../../assets/img/argentBankLogo.png";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectLogIn } from "../../store/selectors";
 
 function Nav() {
+  const user = useSelector(selectLogIn);
+  console.log(user.isLoggedIn);
+
+  const isConnected = () => {
+    if (user.isLoggedIn === true) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   return (
     <nav className="main-nav">
       <Link className="main-nav-logo" to="/">
@@ -16,7 +29,7 @@ function Nav() {
       <div>
         <Link className="main-nav-item" to="/signin">
           <i className="fa fa-user-circle"></i>
-          Sign In
+          {isConnected() ? "Sign out" : "Sign in"}
         </Link>
       </div>
     </nav>
