@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginUser } from "../api/signInApi";
+import { loginUser, checkLoggedInStatus } from "../api/signInApi";
 
 const userSlice = createSlice({
   name: "user",
   initialState: {
     loading: false,
     error: null,
-    isLoggedIn: false,
+    isLoggedIn: checkLoggedInStatus(),
   },
   reducers: {
     logOut: (state) => {

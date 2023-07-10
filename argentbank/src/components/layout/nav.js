@@ -11,6 +11,7 @@ function Nav() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // DISPLAYING SIGN IN OR SIGN OUT DEPENDING OF IF CONNECTED
   const isConnected = () => {
     if (user.isLoggedIn === true) {
       return true;
@@ -19,6 +20,7 @@ function Nav() {
     }
   };
 
+  // SIGNING OUT
   const handleLogOut = (e) => {
     e.preventDefault();
     dispatch(logOut());

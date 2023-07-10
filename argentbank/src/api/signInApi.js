@@ -1,6 +1,10 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
+export const checkLoggedInStatus = () => {
+  return localStorage.getItem("IsLoggedIn") === "true";
+};
+
 export const loginUser = createAsyncThunk(
   "user/loginUser",
   async (userCredentials) => {
