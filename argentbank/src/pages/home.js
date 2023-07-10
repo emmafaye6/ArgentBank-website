@@ -1,4 +1,4 @@
-import Layout from "../components/home/layout";
+import Layout from "../components/layout/layout";
 import Features from "../components/home/features/features";
 import Hero from "../components/home/hero/hero.js";
 import { useEffect } from "react";

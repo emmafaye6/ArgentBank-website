@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import Button from "../../components/user/button.js";
+import Button from "../layout/button.js";
 import "./form.css";
 import { useState } from "react";
 import { loginUser } from "../../store/userSlice.js";
@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 function Form() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate;
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { loading, error } = useSelector((state) => state.user);
@@ -20,7 +20,8 @@ function Form() {
       password,
     };
     dispatch(loginUser(userCredentials)).then((result) => {
-      if (result.payload) {
+      // ERROR WHILE REDIRECTING IS PROBABLY HERE
+      if (result.meta.requestStatus === "fulfilled") {
         setEmail("");
         setPassword("");
         navigate("/user");

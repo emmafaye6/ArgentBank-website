@@ -1,7 +1,7 @@
-import Layout from "../components/home/layout";
+import Layout from "../../components/layout/layout";
 import "./signin.css";
 import { useEffect } from "react";
-import Form from "../components/signin/form";
+import Form from "../../components/form/form";
 
 function Signin() {
   useEffect(() => {

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Layout from "../components/home/layout";
+import Layout from "../components/layout/layout";
 import Accounts from "../components/user/accounts";
 import UserHeader from "../components/user/header";
 

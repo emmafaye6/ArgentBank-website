@@ -2,7 +2,7 @@ import "../hero/hero.css";
 function Hero() {
   return (
     <div className="hero">
-      <section class="hero-content">
+      <section className="hero-content">
         <h2 className="sr-only">Promoted Content</h2>
         <p className="subtitle">No fees.</p>
         <p className="subtitle">No minimum deposit.</p>

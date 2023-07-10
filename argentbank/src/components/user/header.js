@@ -1,6 +1,6 @@
-import Button from "./button";
+import Button from "../layout/button";
 import "../user/header.css";
-import "../user/button.css";
+import "../layout/button.css";
 
 function UserHeader() {
   return (
