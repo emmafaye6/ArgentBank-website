@@ -9,7 +9,7 @@ import { Navigate } from "react-router-dom";
 function User() {
   const user = useSelector(selectLogIn);
 
-  const ifConnected = () => {
+  const isConnected = () => {
     if (user.isLoggedIn === true) {
       console.log("this works");
       return true;
@@ -18,12 +18,12 @@ function User() {
       return false;
     }
   };
-  ifConnected();
+
   useEffect(() => {
     document.title = "Argent Bank - User Page";
   }, []);
 
-  if (!ifConnected()) {
+  if (!isConnected()) {
     return <Navigate to="/signin" />;
   } else {
     return (

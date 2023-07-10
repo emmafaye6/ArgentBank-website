@@ -1,11 +1,15 @@
 import "./nav.css";
 import Logo from "../../assets/img/argentBankLogo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectLogIn } from "../../store/selectors";
+import { useDispatch } from "react-redux";
+import { logOut } from "../../store/userSlice";
 
 function Nav() {
   const user = useSelector(selectLogIn);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const isConnected = () => {
     if (user.isLoggedIn === true) {
@@ -13,6 +17,13 @@ function Nav() {
     } else {
       return false;
     }
+  };
+
+  const handleLogOut = (e) => {
+    e.preventDefault();
+    dispatch(logOut());
+    navigate("/");
+    localStorage.removeItem("IsLoggedIn", "true");
   };
 
   return (
@@ -26,10 +37,18 @@ function Nav() {
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
       <div>
-        <Link className="main-nav-item" to="/signin">
-          <i className="fa fa-user-circle"></i>
-          {isConnected() ? "Sign out" : "Sign in"}
-        </Link>
+        {isConnected() === true ? null : (
+          <Link className="main-nav-item" to="/signin">
+            <i className="fa fa-user-circle"></i>
+            Sign in
+          </Link>
+        )}
+        {isConnected() === false ? null : (
+          <Link to="/" className="main-nav-item" onClick={handleLogOut}>
+            <i className="fa fa-sign-out"></i>
+            Sign Out
+          </Link>
+        )}
       </div>
     </nav>
   );
