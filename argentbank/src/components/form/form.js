@@ -19,6 +19,7 @@ function Form() {
       email,
       password,
     };
+
     dispatch(loginUser(userCredentials)).then((result) => {
       if (result.meta.requestStatus === "fulfilled") {
         setEmail("");
@@ -27,6 +28,7 @@ function Form() {
       }
     });
   };
+
   return (
     <form onSubmit={handleLoginEvent}>
       <div className="input-wrapper">

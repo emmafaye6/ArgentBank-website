@@ -26,6 +26,7 @@ function Nav() {
     dispatch(logOut());
     navigate("/");
     localStorage.removeItem("IsLoggedIn", "true");
+    localStorage.removeItem("token");
   };
 
   return (

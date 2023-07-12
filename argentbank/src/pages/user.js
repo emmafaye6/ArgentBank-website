@@ -2,19 +2,19 @@ import { useEffect } from "react";
 import Layout from "../components/layout/layout";
 import Accounts from "../components/user/accounts";
 import UserHeader from "../components/user/header";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectLogIn } from "../store/selectors";
 import { Navigate } from "react-router-dom";
+import { GetUserInfo } from "../api/userDataApi";
 
 function User() {
   const user = useSelector(selectLogIn);
 
   const isConnected = () => {
     if (user.isLoggedIn === true) {
-      console.log("this works");
+      GetUserInfo();
       return true;
     } else {
-      console.log("not connected");
       return false;
     }
   };

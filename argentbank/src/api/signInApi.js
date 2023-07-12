@@ -17,11 +17,13 @@ export const loginUser = createAsyncThunk(
             "There is an issue with either your password or your email, please try again"
           );
         } else {
+          alert("There has been an error, please try again");
         }
       });
+    const token = await request.data.body.token;
     const response = await request.data.data;
     localStorage.setItem("IsLoggedIn", "true");
-
+    localStorage.setItem("token", token);
     return response;
   }
 );
