@@ -17,7 +17,7 @@ export const GetUserInfo = async () => {
         },
       }
     );
-    console.log("Henlo");
+
     dispatch(saveUserData(response.data.body));
   } catch (error) {
     console.error(error);
