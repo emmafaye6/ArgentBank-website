@@ -14,8 +14,6 @@ function User() {
     if (user.isLoggedIn === true) {
       GetUserInfo();
       return true;
-    } else {
-      return false;
     }
   };
 
@@ -25,15 +23,14 @@ function User() {
 
   if (!isConnected()) {
     return <Navigate to="/signin" />;
-  } else {
-    return (
-      <Layout>
-        <div className="main bg-dark">
-          <UserHeader />
-          <Accounts />
-        </div>
-      </Layout>
-    );
   }
+  return (
+    <Layout>
+      <div className="main bg-dark">
+        <UserHeader />
+        <Accounts />
+      </div>
+    </Layout>
+  );
 }
 export default User;
