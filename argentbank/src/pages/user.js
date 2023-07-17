@@ -12,11 +12,13 @@ function User() {
 
   const isConnected = () => {
     if (user.isLoggedIn === true) {
-      GetUserInfo();
-
       return true;
     }
   };
+
+  useEffect(() => {
+    GetUserInfo();
+  }, []);
 
   useEffect(() => {
     document.title = "Argent Bank - User Page";

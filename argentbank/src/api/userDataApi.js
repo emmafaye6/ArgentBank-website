@@ -17,7 +17,6 @@ export const GetUserInfo = async () => {
         },
       }
     );
-
     dispatch(saveUserData(response.data.body));
   } catch (error) {
     console.error(error);
