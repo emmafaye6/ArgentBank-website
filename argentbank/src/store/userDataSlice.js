@@ -8,6 +8,9 @@ export const userDataSlice = createSlice({
       state = action.payload;
       return state;
     },
+    editUserName: (state, action) => {
+      state.userName = action.payload;
+    },
     removeUserData: (state) => {
       state = {};
       return state;
@@ -15,4 +18,5 @@ export const userDataSlice = createSlice({
   },
 });
 
-export const { saveUserData, removeUserData } = userDataSlice.actions;
+export const { saveUserData, editUserName, removeUserData } =
+  userDataSlice.actions;
