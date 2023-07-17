@@ -5,8 +5,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectUserData, selectEditUser } from "../../store/selectors";
 import { toggleEdit } from "../../store/editUserSlice.js";
 import { FormEdit } from "../user/formEdit.js";
+import GetUserInfo from "../../api/userDataApi";
 
 function UserHeader() {
+  GetUserInfo();
   const userData = useSelector(selectUserData);
   const editData = useSelector(selectEditUser);
   const dispatch = useDispatch();
