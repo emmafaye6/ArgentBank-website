@@ -1,10 +1,12 @@
 // import { EditUsername } from "../../api/editUserApi.js";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectUserData } from "../../store/selectors";
 import { toggleEdit } from "../../store/editUserSlice.js";
 import { editUserName } from "../../store/userDataSlice.js";
+import Button from "../layout/button";
+import "./formEdit.css";
 
 export function FormEdit() {
   const [userName, setUserName] = useState("");
@@ -66,7 +68,7 @@ export function FormEdit() {
   const editSuccessMessage = () => {
     if (editSuccess) {
       return (
-        <p className="Successmessage">
+        <p className="successmessage">
           Modification du nom d'utilisateur réussie!
         </p>
       );
@@ -75,7 +77,7 @@ export function FormEdit() {
   const editErrorMessage = () => {
     if (!editSuccess) {
       return (
-        <p className="Successmessage">
+        <p className="errormessage">
           Votre nom d'utilisateur ne peut pas contenir de caractères spéciaux,
           veuillez rééssayer
         </p>
@@ -83,11 +85,11 @@ export function FormEdit() {
     }
   };
   return (
-    <div className="editFormContainer">
+    <div className="editform--container">
       {editSuccess === true ? editSuccessMessage() : null}
       {editError === true ? editErrorMessage() : null}
-      <form type="submit" onSubmit={handleSubmit}>
-        <div className="editInfo_input-wrapper">
+      <form type="submit" onSubmit={handleSubmit} className="form">
+        <div className="editform--input-wrapper">
           <label htmlFor="username">Username:</label>
           <input
             type="text"
@@ -97,21 +99,21 @@ export function FormEdit() {
             required
           />
         </div>
-        <div className="editInfo_input-wrapper">
+        <div className="editform--input-wrapper">
           <label htmlFor="firstName">First name:</label>
           <input type="text" id="firstName" value={firstName} disabled />
         </div>
-        <div className="editInfo_input-wrapper">
+        <div className="editform--input-wrapper">
           <label htmlFor="lastName">Last name:</label>
           <input type="text" id="lastName" value={lastName} disabled />
         </div>
         <div className="buttonwrapper">
-          <button className="" type="submit">
+          <Button className="edit-button" type="submit">
             Save
-          </button>
-          <button className="" onClick={handleClick}>
+          </Button>
+          <Button className="edit-button" onClick={handleClick}>
             Cancel
-          </button>
+          </Button>
         </div>
       </form>
     </div>

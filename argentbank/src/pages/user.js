@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import { selectLogIn } from "../store/selectors";
 import { Navigate } from "react-router-dom";
 import { GetUserInfo } from "../api/userDataApi";
-import { editUserName } from "../store/userDataSlice";
 
 function User() {
   const user = useSelector(selectLogIn);
@@ -14,6 +13,7 @@ function User() {
   const isConnected = () => {
     if (user.isLoggedIn === true) {
       GetUserInfo();
+
       return true;
     }
   };

@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { selectLogIn } from "../../store/selectors";
 import { useDispatch } from "react-redux";
 import { logOut } from "../../store/userSlice";
+import { removeUserData } from "../../store/userDataSlice";
 
 function Nav() {
   const user = useSelector(selectLogIn);
@@ -24,6 +25,7 @@ function Nav() {
   const handleLogOut = (e) => {
     e.preventDefault();
     dispatch(logOut());
+    dispatch(removeUserData());
     navigate("/");
     localStorage.removeItem("IsLoggedIn", "true");
     localStorage.removeItem("token");
