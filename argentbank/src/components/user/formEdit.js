@@ -42,8 +42,14 @@ export function FormEdit() {
         setEditSuccess(true);
       }
     } catch (error) {
-      // Handle error
-      console.error(error);
+      if (error.response) {
+        console.error("Server responded with status:", error.response.status);
+        console.error("Error message:", error.response.data.message);
+      } else if (error.request) {
+        console.error("No response received from the server.");
+      } else {
+        console.error("Error:", error.message);
+      }
     }
   };
 

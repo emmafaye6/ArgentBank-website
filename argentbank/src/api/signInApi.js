@@ -8,22 +8,29 @@ export const checkLoggedInStatus = () => {
 export const loginUser = createAsyncThunk(
   "user/loginUser",
   async (userCredentials) => {
-    const request = await axios
-      .post("http://localhost:3001/api/v1/user/login", userCredentials)
-      .catch(function (error) {
-        console.log(error);
-        if (error.message === "Request failed with status code 400") {
-          alert(
-            "There is an issue with either your password or your email, please try again"
-          );
+    try {
+      const request = await axios.post(
+        "http://localhost:3001/api/v1/user/login",
+        userCredentials
+      );
+
+      const token = request.data.body.token;
+      const response = request.data.data;
+      localStorage.setItem("IsLoggedIn", "true");
+      localStorage.setItem("token", token);
+      return response;
+    } catch (error) {
+      if (error.response) {
+        if (error.response.status === 400) {
+          console.error("Invalid credentials");
         } else {
-          alert("There has been an error, please try again");
+          console.error("There seems to be a problem. Please try again.");
         }
-      });
-    const token = await request.data.body.token;
-    const response = await request.data.data;
-    localStorage.setItem("IsLoggedIn", "true");
-    localStorage.setItem("token", token);
-    return response;
+      } else if (error.request) {
+        console.error("No response received from the server.");
+      } else {
+        console.error("Network error. Please check your internet connection.");
+      }
+    }
   }
 );
