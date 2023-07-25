@@ -5,13 +5,26 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectUserData, selectEditUser } from "../../store/selectors";
 import { toggleEdit } from "../../store/editUserSlice.js";
 import { FormEdit } from "../user/formEdit.js";
-import GetUserInfo from "../../api/userDataApi";
+import { fetchUserInfo } from "../../api/userDataApi";
+import { useEffect } from "react";
+import { saveUserData } from "../../store/userDataSlice";
 
 function UserHeader() {
-  GetUserInfo();
   const userData = useSelector(selectUserData);
   const editData = useSelector(selectEditUser);
   const dispatch = useDispatch();
+  const isLogging = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (isLogging) {
+      const getData = async () => {
+        fetchUserInfo(isLogging).then((response) =>
+          dispatch(saveUserData(response.data.body))
+        );
+      };
+      getData();
+    }
+  }, [dispatch, isLogging]);
 
   return (
     <div className="header">
