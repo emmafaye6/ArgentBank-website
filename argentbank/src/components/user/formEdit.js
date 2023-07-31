@@ -35,7 +35,6 @@ export function FormEdit() {
         }
       );
       const editData = await response.data;
-      console.log(editData);
       dispatch(editUserName(editData.body.userName));
 
       if (response.status === 200) {

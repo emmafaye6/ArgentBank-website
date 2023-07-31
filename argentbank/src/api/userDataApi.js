@@ -1,7 +1,5 @@
 import axios from "axios";
 
-const token = localStorage.getItem("token");
-
 export const fetchUserInfo = async (isLogging) => {
   try {
     const response = await axios.post(
