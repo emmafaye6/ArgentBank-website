@@ -6,9 +6,11 @@ import { selectLogIn } from "../../store/selectors";
 import { useDispatch } from "react-redux";
 import { logOut } from "../../store/userSlice";
 import { removeUserData } from "../../store/userDataSlice";
+import { selectUserData } from "../../store/selectors";
 
 function Nav() {
   const user = useSelector(selectLogIn);
+  const userData = useSelector(selectUserData);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -49,10 +51,16 @@ function Nav() {
           </Link>
         )}
         {isConnected() === false ? null : (
-          <Link to="/" className="main-nav-item" onClick={handleLogOut}>
-            <i className="fa fa-sign-out"></i>
-            Sign Out
-          </Link>
+          <>
+            <Link to="/user">
+              <i class="fa fa-user-circle"></i>
+              {userData.userName}
+            </Link>
+            <Link to="/" className="main-nav-item" onClick={handleLogOut}>
+              <i className="fa fa-sign-out"></i>
+              Sign Out
+            </Link>
+          </>
         )}
       </div>
     </nav>
