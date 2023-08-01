@@ -13,20 +13,24 @@ function Form() {
 
   const { loading } = useSelector((state) => state.user);
 
-  const handleLoginEvent = (e) => {
+  const handleLoginEvent = async (e) => {
     e.preventDefault();
     let userCredentials = {
       email,
       password,
     };
 
-    dispatch(loginUser(userCredentials)).then((result) => {
+    try {
+      const result = await dispatch(loginUser(userCredentials));
+
       if (result.meta.requestStatus === "fulfilled") {
         setEmail("");
         setPassword("");
         navigate("/user");
       }
-    });
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (

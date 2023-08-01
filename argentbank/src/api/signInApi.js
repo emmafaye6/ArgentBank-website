@@ -1,3 +1,4 @@
+// signInApi.js
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
@@ -7,7 +8,7 @@ export const checkLoggedInStatus = () => {
 
 export const loginUser = createAsyncThunk(
   "user/loginUser",
-  async (userCredentials) => {
+  async (userCredentials, { rejectWithValue }) => {
     try {
       const request = await axios.post(
         "http://localhost:3001/api/v1/user/login",
@@ -22,14 +23,19 @@ export const loginUser = createAsyncThunk(
     } catch (error) {
       if (error.response) {
         if (error.response.status === 400) {
-          console.error("Invalid credentials");
+          alert("One of your credentials might be wrong, please try again");
+          return rejectWithValue("Invalid credentials");
         } else {
-          console.error("There seems to be a problem. Please try again.");
+          return rejectWithValue(
+            "There seems to be a problem. Please try again."
+          );
         }
       } else if (error.request) {
-        console.error("No response received from the server.");
+        return rejectWithValue("No response received from the server.");
       } else {
-        console.error("Network error. Please check your internet connection.");
+        return rejectWithValue(
+          "Network error. Please check your internet connection."
+        );
       }
     }
   }
