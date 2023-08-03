@@ -54,7 +54,8 @@ export function FormEdit() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const check = /^[0-9A-Za-z\s\-]+$/;
+    const check = /^[0-9A-Za-z\s-]+$/;
+
     setEditSuccess(false);
     if (check.test(userName)) {
       editUsername();
